@@ -1,3 +1,5 @@
+"use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import {
   LayoutDashboard,
@@ -47,7 +49,8 @@ export default function DashboardLayout({ children }) {
             <Crown size={15} />
             <span>8 Credits</span>
           </div>
-          <button>Upgrade ✨</button>
+
+          <button onClick={() => signOut({ callbackUrl: "/" })}>Dil</button>
         </div>
       </aside>
 
