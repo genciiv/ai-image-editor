@@ -4,8 +4,8 @@ export default function HistoryPage() {
   return (
     <>
       <div className="dashHeader">
-        <h1>Image History</h1>
-        <p>Manage and organize your saved image edits.</p>
+        <h1>Historiku i imazheve</h1>
+        <p>Menaxho dhe organizo ndryshimet e ruajtura të imazheve.</p>
       </div>
 
       <section className="dashPanel">
@@ -16,8 +16,8 @@ export default function HistoryPage() {
           </div>
 
           <select>
-            <option>Newest First</option>
-            <option>Oldest First</option>
+            <option>Më të rejat e para</option>
+            <option>Më i vjetri i parë</option>
           </select>
         </div>
       </section>
@@ -29,8 +29,8 @@ export default function HistoryPage() {
           </div>
 
           <div>
-            <strong>No history yet</strong>
-            <p>Your edited images will appear here after processing.</p>
+            <strong>Nuk ka ende historik</strong>
+            <p>Imazhet e modifikuara do të shfaqen këtu pas përpunimit.</p>
           </div>
 
           <div className="rowActions">

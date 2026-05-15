@@ -30,12 +30,12 @@ export default function DashboardLayout({ children }) {
 
           <Link href="/dashboard/edit">
             <WandSparkles size={17} />
-            Edit Image
+            Editim Imazhi
           </Link>
 
           <Link href="/dashboard/history">
             <History size={17} />
-            History
+            Historia
           </Link>
 
           <Link href="/dashboard/settings">

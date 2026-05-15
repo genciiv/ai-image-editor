@@ -11,33 +11,33 @@ export default function EditImagePage() {
       <div className="editGrid">
         <section className="dashPanel">
           <h2>Settings</h2>
-          <p className="muted">Choose image editing options.</p>
+          <p className="muted">Zgjidhni opsionet e redaktimit të imazhit.</p>
 
           <label className="inputLabel">Tool</label>
           <select className="dashInput">
-            <option>Remove Background</option>
-            <option>Upscale Image</option>
+            <option>Hiq sfondin</option>
+            <option>Imazh i nivelit të lartë</option>
             <option>Smart Crop</option>
           </select>
 
           <button className="mainGradientBtn">
             <WandSparkles size={16} />
-            Process Image
+            Imazh i procesit
           </button>
         </section>
 
         <section className="dashPanel">
-          <h2>Image Input</h2>
-          <p className="muted">Upload an image file to edit.</p>
+          <h2>Futja e imazhit</h2>
+          <p className="muted">Ngarko një skedar imazhi për ta modifikuar.</p>
 
           <div className="uploadBox">
             <Upload size={22} />
-            <span>Upload image file</span>
+            <span>Ngarko skedarin e imazhit</span>
           </div>
 
           <div className="latestBox">
             <div className="panelTitleRow">
-              <strong>Latest Result</strong>
+              <strong>Rezultati më i fundit</strong>
               <button>Copy</button>
             </div>
 
@@ -54,8 +54,8 @@ export default function EditImagePage() {
       <div className="historyGrid">
         <div className="historyCard">
           <ImageIcon size={20} />
-          <strong>No recent edits</strong>
-          <p>Edited images will appear here.</p>
+          <strong>Nuk ka ndryshime të fundit</strong>
+          <p>Imazhet e modifikuara do të shfaqen këtu.</p>
         </div>
       </div>
     </>
