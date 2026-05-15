@@ -5,16 +5,16 @@ import Navbar from "@/components/Navbar";
 import { signIn } from "next-auth/react";
 import { Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function SignUpPage() {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [loading, setLoading] = useState(false);
+export default function SignInPage() {
+  const router = useRouter();
+  const [form, setForm] = useState({ email: "", password: "" });
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
 
-    const res = await fetch("/api/auth/register", {
+    const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,14 +23,13 @@ export default function SignUpPage() {
     });
 
     const data = await res.json();
-    setLoading(false);
 
     if (data.error) {
       alert(data.error);
       return;
     }
 
-    alert("Llogaria u krijua me sukses!");
+    router.push("/dashboard");
   }
 
   return (
@@ -47,30 +46,23 @@ export default function SignUpPage() {
           </Link>
 
           <h1>
-            Krijo imazhe me <span>AI Magic</span>
+            Mirë se u ktheve te <span>AI Magic</span>
           </h1>
 
           <p>
-            Regjistrohu falas dhe fillo të përpunosh imazhe për biznes, rrjete
-            sociale dhe projekte digjitale.
+            Hyr në llogarinë tënde dhe vazhdo të krijosh imazhe profesionale me
+            inteligjencë artificiale.
           </p>
         </section>
 
         <section className="authRight">
           <form className="authCard" onSubmit={handleSubmit}>
-            <h2>Krijo Llogari</h2>
-            <p>Plotëso të dhënat ose vazhdo direkt me Google.</p>
+            <h2>Hyr në Llogari</h2>
+            <p>Vendos emailin dhe password-in për të vazhduar.</p>
 
             <div className="authDivider">
               <span>ose</span>
             </div>
-
-            <input
-              type="text"
-              placeholder="Emri"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
 
             <input
               type="email"
@@ -86,10 +78,7 @@ export default function SignUpPage() {
               onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
 
-            <button type="submit">
-              {loading ? "Duke krijuar..." : "Krijo Account"}
-            </button>
-
+            <button type="submit">Hyr</button>
             <button
               type="button"
               className="googleBtn"
@@ -99,7 +88,7 @@ export default function SignUpPage() {
             </button>
 
             <span className="authSwitch">
-              Ke llogari? <Link href="/auth/sign-in">Hyr këtu</Link>
+              Nuk ke llogari? <Link href="/auth/sign-up">Krijo këtu</Link>
             </span>
           </form>
         </section>

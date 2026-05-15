@@ -253,7 +253,6 @@ a {
   .navbar {
     height: 64px;
     padding: 0 18px;
-    
   }
 
   .brand {
@@ -356,7 +355,7 @@ a {
 }
 
 .sectionTop h2 {
-   font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(28px, 3vw, 40px);
   color: #162033;
   margin-bottom: 18px;
   font-weight: 900;
@@ -542,7 +541,6 @@ a {
   }
 }
 
-
 .reviewsSection {
   max-width: 1180px;
   margin: 0 auto;
@@ -669,10 +667,6 @@ a {
   .footer {
     grid-template-columns: 1fr;
   }
-
-
-
-
 }
 
 .authPage {
@@ -800,5 +794,199 @@ a {
 
   .authLeft {
     display: none;
+  }
+}
+
+.googleBtn {
+  height: 48px;
+  border: 1px solid #dbe2ea;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.googleBtn:hover {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.authPage {
+  min-height: calc(100vh - 78px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.12),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(147, 51, 234, 0.12),
+      transparent 34%
+    ),
+    #f8fafc;
+}
+
+.authLeft {
+  padding: 70px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.authLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 44px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #6846ff;
+}
+
+.authLeft h1 {
+  max-width: 540px;
+  font-size: clamp(42px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin: 0 0 22px;
+  color: #111827;
+  font-weight: 900;
+}
+
+.authLeft h1 span {
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.authLeft p {
+  max-width: 520px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
+.authRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 44px;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid #e7edf5;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.authCard h2 {
+  margin: 0;
+  font-size: 25px;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.authCard p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.authCard input {
+  width: 100%;
+  height: 47px;
+  border-radius: 11px;
+  border: 1px solid #dbe2ea;
+  padding: 0 15px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+}
+
+.authCard input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+}
+
+.authCard button {
+  height: 47px;
+  border: none;
+  border-radius: 11px;
+  background: #111827;
+  color: white;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.googleBtn {
+  height: 47px !important;
+  border: 1px solid #dbe2ea !important;
+  border-radius: 11px !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+.googleBtn:hover {
+  background: #f8fafc !important;
+}
+
+.authDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.authDivider::before,
+.authDivider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e2e8f0;
+}
+
+.authSwitch {
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.authSwitch a {
+  color: #111827;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .authPage {
+    grid-template-columns: 1fr;
+  }
+
+  .authLeft {
+    display: none;
+  }
+
+  .authRight {
+    padding: 24px;
   }
 }
