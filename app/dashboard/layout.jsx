@@ -1,6 +1,8 @@
 "use client";
-import { signOut } from "next-auth/react";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   WandSparkles,
@@ -11,6 +13,21 @@ import {
 } from "lucide-react";
 
 export default function DashboardLayout({ children }) {
+  const [credits, setCredits] = useState(0);
+  const [plan, setPlan] = useState("FREE");
+
+  useEffect(() => {
+    async function getCredits() {
+      const res = await fetch("/api/user/credits");
+      const data = await res.json();
+
+      setCredits(data.credits);
+      setPlan(data.plan);
+    }
+
+    getCredits();
+  }, []);
+
   return (
     <div className="dashShell">
       <aside className="dashSidebar">
@@ -30,12 +47,12 @@ export default function DashboardLayout({ children }) {
 
           <Link href="/dashboard/edit">
             <WandSparkles size={17} />
-            Editim Imazhi
+            Edit Image
           </Link>
 
           <Link href="/dashboard/history">
             <History size={17} />
-            Historia
+            History
           </Link>
 
           <Link href="/dashboard/settings">
@@ -47,7 +64,9 @@ export default function DashboardLayout({ children }) {
         <div className="dashUpgrade">
           <div>
             <Crown size={15} />
-            <span>8 Credits</span>
+            <span>
+              {plan === "PRO" ? "PRO · Unlimited" : `${plan} · ${credits} Credits`}
+            </span>
           </div>
 
           <button onClick={() => signOut({ callbackUrl: "/" })}>Dil</button>
