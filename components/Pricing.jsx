@@ -1,4 +1,8 @@
+"use client";
+
 import { Check } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const plans = [
   {
@@ -9,6 +13,7 @@ const plans = [
     features: ["5 imazhe në ditë", "Heqje sfondi", "Crop AI", "Support bazik"],
     button: "Fillo",
     active: false,
+    type: "free",
   },
   {
     title: "Pro",
@@ -24,10 +29,44 @@ const plans = [
     ],
     button: "Kalo në Pro",
     active: true,
+    type: "pro",
   },
 ];
 
 export default function Pricing() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  async function handlePlanClick(type) {
+    if (type === "free") {
+      if (session) {
+        router.push("/dashboard");
+      } else {
+        router.push("/auth/sign-up");
+      }
+      return;
+    }
+
+    if (type === "pro") {
+      if (!session) {
+        router.push("/auth/sign-up?plan=pro");
+        return;
+      }
+
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || "Nuk u hap pagesa.");
+      }
+    }
+  }
+
   return (
     <section className="pricingSection" id="pricing">
       <div className="sectionTop">
@@ -61,7 +100,10 @@ export default function Pricing() {
               ))}
             </div>
 
-            <button className={plan.active ? "planBtn activeBtn" : "planBtn"}>
+            <button
+              onClick={() => handlePlanClick(plan.type)}
+              className={plan.active ? "planBtn activeBtn" : "planBtn"}
+            >
               {plan.button}
             </button>
           </div>

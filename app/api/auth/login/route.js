@@ -10,7 +10,7 @@ export async function POST(req) {
     if (!email || !password) {
       return Response.json(
         { error: "Email dhe password janë të detyrueshme" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -19,13 +19,33 @@ export async function POST(req) {
     });
 
     if (!user) {
-      return Response.json({ error: "Ky email nuk ekziston" }, { status: 404 });
+      return Response.json(
+        { error: "Ky email nuk ekziston" },
+        { status: 404 }
+      );
+    }
+
+    if (!user.emailVerified) {
+      return Response.json(
+        { error: "Duhet të verifikosh emailin para se të hysh." },
+        { status: 403 }
+      );
+    }
+
+    if (!user.password) {
+      return Response.json(
+        { error: "Kjo llogari është krijuar me Google. Hyr me Google." },
+        { status: 400 }
+      );
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      return Response.json({ error: "Password i gabuar" }, { status: 401 });
+      return Response.json(
+        { error: "Password i gabuar" },
+        { status: 401 }
+      );
     }
 
     const token = jwt.sign(
@@ -34,7 +54,7 @@ export async function POST(req) {
         email: user.email,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "7d" },
+      { expiresIn: "7d" }
     );
 
     const cookieStore = await cookies();
@@ -56,7 +76,7 @@ export async function POST(req) {
 
     return Response.json(
       { error: "Server error", details: error.message },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

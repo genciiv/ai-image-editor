@@ -8,15 +8,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
-  password  String?
-  credits   Int      @default(5)
-  plan      String   @default("FREE")
-  createdAt DateTime @default(now())
+  id                String   @id @default(cuid())
+  name              String?
+  email             String   @unique
+  password          String?
+  credits           Int      @default(5)
+  plan              String   @default("FREE")
+  emailVerified     Boolean  @default(false)
+  verificationToken String?
+  tokenExpires      DateTime?
+  createdAt         DateTime @default(now())
 
-  images    Image[]
+  images            Image[]
 }
 
 model Image {

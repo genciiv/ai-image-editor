@@ -1,24 +1,17 @@
 import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
 
 async function getCurrentUser() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const session = await getServerSession(authOptions);
 
-  if (!token) return null;
+  if (!session?.user?.email) return null;
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    return await prisma.user.findUnique({
-      where: {
-        id: decoded.id,
-      },
-    });
-  } catch {
-    return null;
-  }
+  return await prisma.user.findUnique({
+    where: {
+      email: session.user.email,
+    },
+  });
 }
 
 export async function GET() {
