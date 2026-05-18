@@ -69,7 +69,27 @@ export default function DashboardLayout({ children }) {
             </span>
           </div>
 
-          <button onClick={() => signOut({ callbackUrl: "/" })}>Dil</button>
+          <button
+  onClick={async () => {
+    const res = await fetch("/api/stripe/checkout", {
+      method: "POST",
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert(data.error || "Checkout error");
+    }
+  }}
+>
+  Upgrade
+</button>
+
+<button onClick={() => signOut({ callbackUrl: "/" })}>Dil</button>
+
+          
         </div>
       </aside>
 
