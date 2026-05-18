@@ -1,4 +1,48 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function SettingsPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    async function getProfile() {
+      const res = await fetch("/api/user/profile");
+      const data = await res.json();
+
+      if (!data.error) {
+        setForm({
+          name: data.name || "",
+          email: data.email || "",
+        });
+      }
+    }
+
+    getProfile();
+  }, []);
+
+  async function handleSave() {
+    const res = await fetch("/api/user/profile", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
+
+    alert("Të dhënat u ruajtën me sukses!");
+  }
+
   return (
     <>
       <div className="dashHeader">
@@ -9,40 +53,37 @@ export default function SettingsPage() {
       <div className="settingsWrap">
         <section className="settingsCard">
           <h2>Emri</h2>
-          <p>Ju lutemi shkruani emrin tuaj të plotë ose një emër të shfaqur.</p>
+          <p>Ndrysho emrin që shfaqet në llogarinë tënde.</p>
 
-          <input defaultValue="AI Image Editor User" />
+          <input
+            value={form.name}
+            onChange={(e) =>
+              setForm({ ...form, name: e.target.value })
+            }
+            placeholder="Emri"
+          />
 
           <div className="settingsBottom">
-            <span>Ju lutemi përdorni maksimumi 32 karaktere.</span>
-            <button>Ruaj</button>
+            <span>Maksimumi 32 karaktere.</span>
+            <button onClick={handleSave}>Ruaj</button>
           </div>
         </section>
 
         <section className="settingsCard">
           <h2>Email</h2>
-          <p>
-            Futni adresën e email-it që dëshironi të përdorni për t'u kyçur.
-          </p>
+          <p>Ndrysho emailin që përdor për t’u kyçur.</p>
 
-          <input defaultValue="user@example.com" />
-
-          <div className="settingsBottom">
-            <span>Ju lutemi shkruani një adresë të vlefshme email-i.</span>
-            <button>Ruaj</button>
-          </div>
-        </section>
-
-        <section className="settingsCard">
-          <h2>Vendos fjalëkalimin</h2>
-          <p>
-            Klikoni butonin më poshtë për të vendosur një fjalëkalim për
-            llogarinë tuaj.
-          </p>
+          <input
+            value={form.email}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value })
+            }
+            placeholder="Email"
+          />
 
           <div className="settingsBottom">
-            <span>Siguro llogarinë tënde.</span>
-            <button>Vendos fjalëkalimin</button>
+            <span>Vendos një email të vlefshëm.</span>
+            <button onClick={handleSave}>Ruaj</button>
           </div>
         </section>
       </div>

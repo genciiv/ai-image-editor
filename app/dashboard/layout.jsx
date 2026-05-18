@@ -87,7 +87,17 @@ export default function DashboardLayout({ children }) {
   Upgrade
 </button>
 
-<button onClick={() => signOut({ callbackUrl: "/" })}>Dil</button>
+<button
+  onClick={async () => {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+    });
+
+    signOut({ callbackUrl: "/" });
+  }}
+>
+  Dil
+</button>
 
           
         </div>
