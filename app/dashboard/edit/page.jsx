@@ -58,14 +58,32 @@ export default function EditImagePage() {
   }
 
   async function handleProcess() {
-    if (!imageUrl) {
-      alert("Ngarko një foto fillimisht.");
-      return;
-    }
-
-    const newUrl = buildTransformedUrl(imageUrl, tool);
-    setProcessedUrl(newUrl);
+  if (!imageUrl) {
+    alert("Ngarko një foto fillimisht.");
+    return;
   }
+
+  const creditsRes = await fetch("/api/user/credits");
+  const creditsData = await creditsRes.json();
+
+  if (creditsData.plan !== "PRO" && creditsData.credits <= 0) {
+    alert("Nuk ke më credits. Upgrade në Pro.");
+    return;
+  }
+
+  const newUrl = buildTransformedUrl(imageUrl, tool);
+  setProcessedUrl(newUrl);
+
+  const useCreditRes = await fetch("/api/use-credit", {
+    method: "POST",
+  });
+
+  const useCreditData = await useCreditRes.json();
+
+  if (useCreditData.error) {
+    alert(useCreditData.error);
+  }
+}
 
   return (
     <>
