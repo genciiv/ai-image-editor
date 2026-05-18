@@ -1504,3 +1504,162 @@ a {
     flex-direction: column;
   }
 }
+
+
+
+
+.previewImage {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin-top: 14px;
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.uploadBox {
+  cursor: pointer;
+}
+
+.resultBox {
+  margin-top: 16px;
+  background: #fafafa;
+}
+
+.imagePreviewWrap {
+  margin-top: 16px;
+}
+
+.previewImage {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.imageUrlText {
+  margin-top: 10px !important;
+  font-size: 12px !important;
+  color: #64748b !important;
+  word-break: break-all;
+}
+
+
+.realHistoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.realImageCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+}
+
+.realImageCard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: #f8fafc;
+}
+
+.realImageCard div {
+  padding: 14px 14px 8px;
+}
+
+.realImageCard strong {
+  display: block;
+  font-size: 14px;
+  color: #111827;
+  word-break: break-all;
+}
+
+.realImageCard p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.realImageCard a {
+  margin: 0 14px 14px;
+  height: 36px;
+  border-radius: 10px;
+  background: #f5f3ff;
+  color: #7c3aed;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+@media (max-width: 1000px) {
+  .realHistoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .realHistoryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.resultBox a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7c3aed;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.editGrid {
+  align-items: start;
+}
+
+.resultBox {
+  overflow: hidden;
+}
+
+.previewImage {
+  width: 100%;
+  height: 220px;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.compareGrid {
+  align-items: start;
+}
+
+.latestBox {
+  max-height: 360px;
+  overflow: hidden;
+}
+
